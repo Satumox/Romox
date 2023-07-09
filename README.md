@@ -14,9 +14,9 @@ Romox is a program to read out header information of Game Boy and Game Boy Color
     Title: TETRIS
     CGB Flag: Not set
     SGB support: false
-    Cartridge type: ROM ONLY
-    ROM size: 32 KiB
-    RAM size: 0
+    Cartridge type: ROM ONLY (0x00)
+    ROM size: 32 KiB (0x00)
+    RAM size: 0 (0x00)
     Destination: Japan (and possibly overseas)
-    Licensee Code: 1
+    Licensee Code: Nintendo(0x01)
     Mask ROM Version number: 1

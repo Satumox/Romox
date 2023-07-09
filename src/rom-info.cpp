@@ -8,6 +8,7 @@
 #include "rom-info.hpp"
 #include "constants.hpp"
 #include "mappings.hpp"
+#include "utilities.hpp"
 
 namespace fs = std::filesystem;
 using std::ifstream;
@@ -88,13 +89,37 @@ void RomInfo::printInfo(std::ostream &os = std::cout)
     os << "SGB support: " << std::boolalpha << (m_SGB_flag == 0x03) << std::endl;
 
     // print cartrdige type
-    os << "Cartridge type: " << Romox::Maps::cartridge_types.at(m_cartridge_type) << std::endl;
+
+    os << "Cartridge type: ";
+    if(Romox::Maps::cartridge_types.contains(m_cartridge_type)) {
+        os << Romox::Maps::cartridge_types.at(m_cartridge_type);
+    } else {
+        os << "Unknown";
+    }
+    os << " (" << formatHex(m_cartridge_type) << ")" << std::endl;
+
 
     // print ROM size
-    os << "ROM size: " << Romox::Maps::rom_sizes.at(m_rom_size) << std::endl;
+
+    os << "ROM size: ";
+    if(Romox::Maps::rom_sizes.contains(m_rom_size)) {
+        os << Romox::Maps::rom_sizes.at(m_rom_size);
+    }
+    else {
+        os << "Unknown ";
+    }
+    os << " (" << formatHex(m_rom_size) << ")" << std::endl;
 
     // print RAM size
-    os << "RAM size: " << Romox::Maps::ram_sizes.at(m_ram_size) << std::endl;
+
+    os << "RAM size: ";
+    if(Romox::Maps::ram_sizes.contains(m_ram_size)) {
+        os << Romox::Maps::ram_sizes.at(m_ram_size);
+    }
+    else {
+        os << "Unknown" << std::endl;
+    }
+    os << " (" << formatHex(m_ram_size) << ")" << std::endl;
 
     // print Destination
     os << "Destination: ";
@@ -115,11 +140,28 @@ void RomInfo::printInfo(std::ostream &os = std::cout)
 
     if (m_old_licensee_code == 0x33)
     {
-        os << "New Licensee Code: " << Romox::Maps::new_licensee_codes.at(m_new_licensee_code) << "\n";
+        // print new licensee code
+        os << "New Licensee Code: ";
+        if(Romox::Maps::new_licensee_codes.contains(m_new_licensee_code)) {
+            os << Romox::Maps::new_licensee_codes.at(m_new_licensee_code);
+        }
+        else {
+            os << "Unknown ";
+        }
+        os <<  " (" << m_new_licensee_code << ")" << std::endl;
+
     }
     else
     {
-        os << "Licensee Code: " << (uint32_t)m_old_licensee_code << std::endl;
+        os << "Licensee Code: ";
+        if(Romox::Maps::licensee_codes.contains(m_old_licensee_code)) {
+            os << Romox::Maps::licensee_codes.at(m_old_licensee_code);
+        }
+        else {
+            os << "Unknown ";
+        }
+        os << "(" << formatHex(m_old_licensee_code) << ")" << std::endl;
+
     }
 
     os << "Mask ROM Version number: " << (uint16_t)m_mask_rom_version_number << "\n";
