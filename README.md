@@ -10,7 +10,7 @@ Romox is a program to read out header information of Game Boy and Game Boy Color
 ## Example
     $ ./romox TETRIS.gb
 
-### Output
+## Output
     Title: TETRIS
     CGB Flag: Not set
     SGB support: false
@@ -20,3 +20,7 @@ Romox is a program to read out header information of Game Boy and Game Boy Color
     Destination: Japan (and possibly overseas)
     Licensee Code: Nintendo(0x01)
     Mask ROM Version number: 1
+
+## Credits
+Thanks to everyone involved in documenting the Game Boy cartridge header.
+I specifically got the information from https://gbdev.io/pandocs/The_Cartridge_Header.html.
